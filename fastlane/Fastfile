@@ -19,6 +19,8 @@ skip_docs
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
+    UI.message("App Identifier: #{app_identifier}")
+
     app_store_connect_api_key
     get_provisioning_profile
     increment_build_number(

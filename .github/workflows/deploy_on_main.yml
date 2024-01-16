@@ -17,13 +17,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install CocoaPods and Fastlane
-      run: |
-        gem install cocoapods
-        # gem install fastlane
+    # - name: Install CocoaPods and Fastlane
+    #   run: |
+    #     gem install cocoapods
+    #     gem install fastlane
 
-    - name: Install Dependencies
-      run: pod install
+    # - name: Install Dependencies
+    #   run: pod install
 
-    # - name: upload testflight
-    #   run: fastlane beta
+    - name: upload testflight
+      run: fastlane beta
