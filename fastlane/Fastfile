@@ -1,0 +1,68 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+skip_docs
+
+platform :ios do
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    app_store_connect_api_key
+    get_provisioning_profile
+    increment_build_number(
+        xcodeproj: "github-actions-demo-ios.xcodeproj",
+        build_number: date_based_build_number
+    )
+
+    build_app(
+        scheme: "github-actions-demo-ios",
+        configuration: "Release"
+    )
+    upload_to_testflight(skip_waiting_for_build_processing: true)
+  end
+end
+
+def today_formatted
+  Date.today.strftime('%Y%m%d')
+end
+
+def default_build_number
+  "#{today_formatted}01"
+end
+
+def date_based_build_number
+  current_build_number = get_build_number(xcodeproj: "buildandgrow-app-ios.xcodeproj")
+
+  build_date = current_build_number[0..7]
+  build_version = current_build_number[8..9]
+
+  if (!build_date || !build_version) || (build_date.empty? || build_version.empty?)
+    return default_build_number
+  end
+
+  begin
+    build_date_object = Date.strptime(build_date, '%Y%m%d')
+  rescue
+    return default_build_number
+  end
+
+
+  if build_date_object >= Date.today
+    new_version = build_version.to_i + 1
+    return "#{today_formatted}%02d" % new_version
+  end
+
+  return default_build_number
+end
