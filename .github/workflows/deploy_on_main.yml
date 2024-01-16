@@ -22,8 +22,8 @@ jobs:
     #     gem install cocoapods
     #     gem install fastlane
 
-    # - name: Install Dependencies
-    #   run: pod install
+    - name: Install Dependencies
+      run: pod install
 
     - name: upload testflight
       run: fastlane beta
