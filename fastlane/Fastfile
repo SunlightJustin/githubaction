@@ -38,6 +38,14 @@ platform :ios do
       match(api_key: api_key, type: "appstore", readonly: true)
   end
 
+  desc "同步证书，假如证书过期或新增了设备，会从头创立证书和描绘文件"
+  desc "该方法仅限办理员运用，其他开发成员只需求运用 match_all 方法即可"
+  lane :force_match do
+      # match(api_key: api_key, type: "development", force_for_new_devices: true)
+      # match(api_key: api_key, type: "adhoc", force_for_new_devices: true)
+      match(api_key: api_key, type: "appstore")
+  end
+
   lane :release do
      
       # 读取文件内容
@@ -55,15 +63,15 @@ platform :ios do
         unlock: true
       })
 
-      match_nuke({
-        type: "appstore",
-        readonly: false,
-        app_identifier: "com.start.vpn"
-      })
+      # match_nuke({
+      #   type: "appstore",
+      #   readonly: false,
+      #   app_identifier: "com.start.vpn"
+      # })
 
       # 先同步appstore证书和描述文件
-      match(api_key: api_key, type: "appstore", readonly: true)
-      # match(api_key: api_key, type: "appstore", readonly: true, git_private_key: file_content)
+      # match(api_key: api_key, type: "appstore", readonly: true)
+      match(api_key: api_key, type: "appstore", readonly: true, git_private_key: file_content)
 
       # cocoapods()
 
