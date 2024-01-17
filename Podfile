@@ -9,13 +9,13 @@ target 'github-actions-demo-ios' do
   pod 'SnapKit'
   pod 'Then' 
 
-  target 'github-actions-demo-iosTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  # target 'github-actions-demo-iosTests' do
+  #   inherit! :search_paths
+  #   # Pods for testing
+  # end
 
-  target 'github-actions-demo-iosUITests' do
-    # Pods for testing
-  end
+  # target 'github-actions-demo-iosUITests' do
+  #   # Pods for testing
+  # end
 
 end
