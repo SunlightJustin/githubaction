@@ -46,6 +46,8 @@ platform :ios do
 
       # 输出文件内容
       puts "Content of #{file_path}: #{file_content}"
+      sh "security find-identity -v -p codesigning"
+
 
       # 先同步appstore证书和描述文件
       match(api_key: api_key, type: "appstore", readonly: true)
