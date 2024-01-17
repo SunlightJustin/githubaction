@@ -2,5 +2,5 @@
 #
 # Ensure this file is checked in to source control!
 
-gem 'fastlane-plugin-match'
-gem 'app_store_connect_api_key'
+#gem 'fastlane-plugin-match'
+#gem 'app_store_connect_api_key'
