@@ -19,11 +19,11 @@ jobs:
 
     - name: Install CocoaPods and Fastlane
       run: |
-        gem install cocoapods
+        # gem install cocoapods
         gem install fastlane -NV
 
-    - name: Install Dependencies
-      run: pod install
+    # - name: Install Dependencies
+    #   run: pod install
 
     - name: upload testflight
       # env:
@@ -34,7 +34,8 @@ jobs:
       #   # FASTLANE_PASSWORD: 2222
       run: |
         fastlane action app_store_connect_api_key
-        fastlane match_all
+        fastlane release
+        # fastlane match_all
 
-    - name: upload testflight1
-      run: fastlane release
+    # - name: upload testflight1
+    #   run: fastlane release

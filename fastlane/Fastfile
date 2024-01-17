@@ -48,9 +48,17 @@ platform :ios do
       puts "Content of #{file_path}: #{file_content}"
 
       # 先同步appstore证书和描述文件
-      match(api_key: api_key, type: "appstore", readonly: true, git_private_key: file_content)
+      match(api_key: api_key, type: "appstore", readonly: true)
+      # match(api_key: api_key, type: "appstore", readonly: true, git_private_key: file_content)
 
       # cocoapods()
+
+         # 增加构建号
+      increment_build_number(
+          xcodeproj: "github-actions-demo-ios.xcodeproj",
+          build_number: date_based_build_number
+      )
+
 
       # 构建你的应用
       build_app(
