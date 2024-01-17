@@ -16,7 +16,53 @@
 default_platform(:ios)
 skip_docs
 
+
+
+
 platform :ios do
+
+  # 定义一个全局变量api_key，下面都会要用到这个 api_key
+  # key_id 和 issuer_id 都可以在 AppStoreConnect后台 -> 用户和访问 -> 秘钥 这里找到
+  api_key = app_store_connect_api_key(
+      key_id: "7J5MPKPB98",
+      issuer_id: "6053b7fe-68a8-4acb-89be-165aa6465141",
+      key_filepath: "./AuthKey_7J5MPKPB98.p8", # 上面下载的p8文件路径
+      duration: 1200, # optional (maximum 1200)
+      in_house: false # optional but may be required if using match/sigh
+  )
+
+
+  desc "下载所有需要的证书和描述文件到本地，不会重新创建证书和描述文件（只读方式）"
+  lane :match_all do
+      match(api_key: api_key, type: "development", readonly: true)
+      match(api_key: api_key, type: "adhoc", readonly: true)
+      match(api_key: api_key, type: "appstore", readonly: true)
+  end
+
+  lane :release do
+      # 先同步appstore证书和描述文件
+      match(api_key: api_key, type: "appstore", readonly: true)
+      # 省略其他步骤...
+      # 构建你的应用
+      build_app(
+          scheme: "github-actions-demo-ios",
+          clean: true,
+          export_method: "app-store",
+          output_directory: "./build"
+      )
+      # 上传应用到AppStore
+      upload_to_app_store(
+            api_key: api_key,
+            force: true, # Skip HTMl report verification
+            skip_screenshots: true,
+            skip_metadata: true,
+            submit_for_review: false,
+      )
+
+  end
+
+
+
   desc "Push a new beta build to TestFlight"
   lane :beta do
 
@@ -33,42 +79,14 @@ platform :ios do
     #     configuration: "Release"
     # )
     # upload_to_testflight(skip_waiting_for_build_processing: true)
-    
 
-    sync_code_signing(type: "appstore", git_private_key: "-----BEGIN RSA PRIVATE KEY-----
-Proc-Type: 4,ENCRYPTED
-DEK-Info: AES-128-CBC,39875A239A7ED234B1D764E982F8C023
 
-uwakGc/1EcqpbMlfBaDOLK8E6P/ZlH1So1EQloWqg+xMzYXK8BWjsbPrahoNboVg
-KoIGXpLeGuWHtXjNogCgwIs6l+CAiJRkZzi9Vxz6Fl4RRocHR5RIlMr/eQJOqnth
-D000N9dOv4z1v7u9kvscxh95UEBiZk5CJZSnFfWL4txVQTSv1bDDIyUGcvGREsCm
-7kMiivlp0vdzM1KEAQej1T4f2NhBn+pmx32G15YMqv6MInJVZystOLe4EfbANyIJ
-T5Isd5w3vvVhmZq/PW8JabJW2DbgRuJ4rqZkOZi3tfQC9Sbt3lRIkIK6iU4xbcEB
-h5S1UMiGmhe+u7EWdIR1DORnd+KQv8iU/goRBukHnFNV7fsm3hAZJIGVp4bSfDB7
-CNuKhngTtz/RIX5dVhfLQcAuhV7zlj8SvuQmOhvzSVJ5XSF8JxagfsA+lGwFxjlP
-8LKK8ocidaR3YofGMEI9MH0qF/FNNvnMM2yx7ZPZqKDaIYquAy/yhw7XpElxCXc6
-ou0dKmky5FnEucI9FCesjlvkoQpBXGWcl1urWO0vhH/92jwF8qzLnWKUR7IvztqQ
-sMepdzTpAmAoKVKjww6tPXj5YN0f2Y5/IEW3PI9FC1DAay1dIAJpk8KhT7CpfPdU
-ETiF+BH6Sm8U9CNiqP6PLTVrX9hkQSDdYT1TBLRhjYfLQCpM1etJj6bnsHb85yAW
-o9a5Lt6Mcy9ZsDvUKGGOJkCqU9K5KIy1BObQoub1QemMrSKGgOnhZ3VRt09JsUQ/
-6jT7tHpZtfpxwW7pLTAXpYAbFj06bYTzSmgVo0BIYlW0yxlKizTQ9ZvpyLv5AnHt
-zh0NmqxvsNnk/XUvLJm+pgadv3aO7Jkh9mP02N1wHOMUfivwjGSMY+PxulIdX1rP
-XZYVZC/i6+MdaDu3dyL+pXHIwCY/Kve6ETgEnu4osskqOaqEVfe7mXF9/nv0dVwO
-vaFSPvsdYLeJZkHzpZwDhKCumd5gnhd72QBHmEUuYpP1FPVAPr1ntAH914r0lX86
-gA7MLFc1vdf5mLz7pFvHPWVbIeykqUlwJndaTOOZp7ZNkPWVKMI1R6z+fLhN7v34
-5pDs9ObnyG/52IsXYKxNDPp2YWHTb3pPY/Z7iL8DRD2k406IJSEP21E42aI6wb82
-GxWCBLI2ckW4xKU4YdzgCLDtZCKCcds9vAWOPj7QraLkYDqhuc2xYFipSstVfG7h
-9AweTFHE5EbWKEVFYto7vHn0Qi0sfjn2/vtdh0bJimJGC78q3jGpbZqruZPx0rAU
-95SUPiCpzzAtxSMM2bjGsoKYDEXn6tnp48FG6QyKx1Qlgob80aWC7NeqZZuGchIF
-nj8k5KCNg2DUh5bwgUkzyASBgxwp8AkCy0Yuj5ggOygotLg9Q8s+xuxxQAW4hnPi
-zjbUW7Iw55RjHhzOFWbFdH0hzisTmoCvk1BUzI9XSGbl+zpZoGjCWkhNPxMwUQVa
-FWnGzp3aNVp+I12QG936A7BKX8AcmxqpLeHJP+Ftp+svN0xJH5vC5yeqdiZQ2y5Y
-vqrrOJpJeJGbi6rUladJ5K8dedetgVIGBqVH7Vg6xCTVWuBSAiqMf7dSh9OSItm2
------END RSA PRIVATE KEY-----
-") 
+ 
 
-    # 安装所有的Cocoapods依赖
-    cocoapods()
+
+
+    # # 安装所有的Cocoapods依赖
+    # cocoapods()
 
     # 增加构建号
     increment_build_number(

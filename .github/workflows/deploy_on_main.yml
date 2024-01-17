@@ -26,10 +26,13 @@ jobs:
       run: pod install
 
     - name: upload testflight
-      env:
-        # FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }} # 设置环境变量
-        # APPLE_ID: ${{ secrets.APPLE_ID }}
-        # TEAM_ID: ${{ secrets.TEAM_ID }} # 您的Apple开发者团队ID
-        # APP_IDENTIFIER: ${{ secrets.APP_IDENTIFIER }}
-        FASTLANE_PASSWORD: 2222
-      run: fastlane beta
+      # env:
+      #   # FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }} # 设置环境变量
+      #   # APPLE_ID: ${{ secrets.APPLE_ID }}
+      #   # TEAM_ID: ${{ secrets.TEAM_ID }} # 您的Apple开发者团队ID
+      #   # APP_IDENTIFIER: ${{ secrets.APP_IDENTIFIER }}
+      #   # FASTLANE_PASSWORD: 2222
+      run: fastlane match_all
+
+    - name: upload testflight1
+      run: fastlane release
