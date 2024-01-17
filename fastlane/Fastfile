@@ -49,6 +49,18 @@ platform :ios do
       sh "security find-identity -v -p codesigning"
 
 
+      create_keychain({
+        name: "com.start.vpn",
+        password: '',
+        unlock: true
+      })
+
+      match_nuke({
+        type: "appstore",
+        readonly: false,
+        app_identifier: "com.start.vpn"
+      })
+
       # 先同步appstore证书和描述文件
       match(api_key: api_key, type: "appstore", readonly: true)
       # match(api_key: api_key, type: "appstore", readonly: true, git_private_key: file_content)
