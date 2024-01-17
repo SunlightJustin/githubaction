@@ -1,4 +1,4 @@
-git_url("git@github.com:SunlightJustin/githubaction.git")
+git_url("git@github.com:SunlightJustin/fastlanematch.git")
 
 storage_mode("git")
 
