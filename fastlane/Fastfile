@@ -139,7 +139,7 @@ def default_build_number
 end
 
 def date_based_build_number
-  current_build_number = get_build_number(xcodeproj: "buildandgrow-app-ios.xcodeproj")
+  current_build_number = get_build_number(xcodeproj: "github-actions-demo-ios.xcodeproj")
 
   build_date = current_build_number[0..7]
   build_version = current_build_number[8..9]
