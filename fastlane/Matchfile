@@ -21,7 +21,7 @@ git_branch("master")  # git分支称号
 app_identifier(["com.start.vpn"])
 
 
-#ENV["MATCH_PASSWORD"] = "" # 导出
+ENV["MATCH_PASSWORD"] = "2222" # 导出
 
 username("song19861206@163.com") # 共用的AppleId
 
