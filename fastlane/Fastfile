@@ -18,7 +18,7 @@ skip_docs
 
 
 
-
+ 
 platform :ios do
 
   # 定义一个全局变量api_key，下面都会要用到这个 api_key
