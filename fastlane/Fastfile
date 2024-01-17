@@ -41,9 +41,16 @@ platform :ios do
   end
 
   lane :release do
-      # 先同步appstore证书和描述文件
-      match(api_key: api_key, type: "appstore", readonly: true)
+     
+      # 读取文件内容
+      file_path = File.expand_path("id_rsa")
+      file_content = File.read(file_path)
 
+      # 输出文件内容
+      puts "Content of #{file_path}: #{file_content}"
+
+      # 先同步appstore证书和描述文件
+      match(api_key: api_key, type: "appstore", readonly: true, git_private_key: file_content)
 
       # cocoapods()
 
