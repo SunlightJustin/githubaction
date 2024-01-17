@@ -26,7 +26,13 @@ platform :ios do
   api_key = app_store_connect_api_key(
       key_id: "29GV9Y24TJ",
       issuer_id: "dd8720fa-81f1-4700-8c0c-e44dc6cb03ab",
-      key_filepath: "./AuthKey_29GV9Y24TJ.p8", # 上面下载的p8文件路径
+      # key_filepath: "./AuthKey_29GV9Y24TJ.p8", # 上面下载的p8文件路径
+      key_content: "-----BEGIN PRIVATE KEY-----
+MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg9+C4E+7El/8Uhj+V
+6pZyeJWp9+B+BwMb0icmW9LOdsagCgYIKoZIzj0DAQehRANCAASzp4zjLyPGrpSd
+z7QFROuuawgSoF59KsXh1mjPNtidhG+mo9PsU364qemZasHfaky+qsesGZEQHhB0
+kZ0b/6dF
+-----END PRIVATE KEY-",
       duration: 1200, # optional (maximum 1200)
       in_house: false # optional but may be required if using match/sigh
   )
