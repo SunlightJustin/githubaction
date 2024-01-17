@@ -33,14 +33,8 @@ platform :ios do
     #     configuration: "Release"
     # )
     # upload_to_testflight(skip_waiting_for_build_processing: true)
-    certificates(
-      git_url: "git@github.com:SunlightJustin/fastlanematch.git",
-      git_basic_authorization: {
-        user: "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"
-      }
-    )
 
-    sync_code_signing(type: "appstore") # 这是一个示例。如果你使用match进行签名，请确保有合适的配置
+    sync_code_signing(type: "appstore", git_basic_authorization: "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") # 这是一个示例。如果你使用match进行签名，请确保有合适的配置
 
     # 安装所有的Cocoapods依赖
     cocoapods()
