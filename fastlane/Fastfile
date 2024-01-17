@@ -16,8 +16,6 @@
 default_platform(:ios)
 skip_docs
 
-
-
  
 platform :ios do
 
