@@ -24,9 +24,9 @@ platform :ios do
   # 定义一个全局变量api_key，下面都会要用到这个 api_key
   # key_id 和 issuer_id 都可以在 AppStoreConnect后台 -> 用户和访问 -> 秘钥 这里找到
   api_key = app_store_connect_api_key(
-      key_id: "7J5MPKPB98",
-      issuer_id: "6053b7fe-68a8-4acb-89be-165aa6465141",
-      key_filepath: "./AuthKey_7J5MPKPB98.p8", # 上面下载的p8文件路径
+      key_id: "29GV9Y24TJ",
+      issuer_id: "dd8720fa-81f1-4700-8c0c-e44dc6cb03ab",
+      key_filepath: "./AuthKey_29GV9Y24TJ.p8", # 上面下载的p8文件路径
       duration: 1200, # optional (maximum 1200)
       in_house: false # optional but may be required if using match/sigh
   )
