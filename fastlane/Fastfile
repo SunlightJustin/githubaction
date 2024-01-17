@@ -19,20 +19,47 @@ skip_docs
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    UI.message("App Identifier: #{app_identifier}")
 
-    app_store_connect_api_key
-    get_provisioning_profile
+    # app_store_connect_api_key
+    # get_provisioning_profile
+
+    # increment_build_number(
+    #     xcodeproj: "github-actions-demo-ios.xcodeproj",
+    #     build_number: date_based_build_number
+    # )
+
+    # build_app(
+    #     scheme: "github-actions-demo-ios",
+    #     configuration: "Release"
+    # )
+    # upload_to_testflight(skip_waiting_for_build_processing: true)
+
+    sync_code_signing(type: "appstore") # 这是一个示例。如果你使用match进行签名，请确保有合适的配置
+
+    # 安装所有的Cocoapods依赖
+    cocoapods()
+
+    # 增加构建号
     increment_build_number(
         xcodeproj: "github-actions-demo-ios.xcodeproj",
         build_number: date_based_build_number
     )
 
+
+    # 构建你的应用
     build_app(
-        scheme: "github-actions-demo-ios",
-        configuration: "Release"
+      scheme: "github-actions-demo-ios",
+      clean: true,
+      export_method: "app-store",
+      output_directory: "./build"
     )
-    upload_to_testflight(skip_waiting_for_build_processing: true)
+
+    # 发布到TestFlight
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true
+    )
+
+
   end
 end
 
