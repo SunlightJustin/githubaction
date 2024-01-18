@@ -75,7 +75,7 @@ platform :ios do
           api_key: api_key,
           app_identifier: bundle_identifier,
           username: "song19861206@163.com",
-          team_id: team_id,
+          team_id: teamid,
           team_name: "huasong teng",
           provisioning_name: "dis_start2"
       )
