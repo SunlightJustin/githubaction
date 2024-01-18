@@ -47,7 +47,11 @@ platform :ios do
   end
 
   lane :release do
-     
+
+
+      teamid = "3D59AJD96Y"
+      bundle_identifier = "com.start.vpn"
+
       # 读取文件内容
       file_path = File.expand_path("id_rsa")
       file_content = File.read(file_path)
@@ -56,22 +60,20 @@ platform :ios do
       puts "Content of #{file_path}: #{file_content}"
       sh "security find-identity -v -p codesigning"
 
+      update_project_provisioning(
+          xcodeproj: "github-actions-demo-ios.xcodeproj",
+          target_filter: ".*github-actions-demo-ios.*", # matches name or type of a target
+          profile: "fastlane/dis_start.mobileprovision", # optional if you use sigh
+          build_configuration: "Release",
+          certificate: "fastlane/Certificates11.p12",
+          code_signing_identity: "iPhone Distribution" # optionally specify the codesigning identity
+      )
 
-      create_keychain({
-        name: "com.start.vpn",
-        password: '',
-        unlock: true
-      })
-
-      # match_nuke({
-      #   type: "appstore",
-      #   readonly: false,
-      #   app_identifier: "com.start.vpn"
-      # })
+      update_code_signing_settings(team_id: teamid, profile_name: "dis_start", bundle_identifier: bundle_identifier, code_sign_identity: "iPhone Distribution")
 
       # 先同步appstore证书和描述文件
       # match(api_key: api_key, type: "appstore", readonly: true)
-      match(api_key: api_key, type: "appstore", readonly: true, git_private_key: file_content)
+      # match(api_key: api_key, type: "appstore", readonly: true, git_private_key: file_content)
 
       # cocoapods()
 
