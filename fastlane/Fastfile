@@ -91,7 +91,6 @@ platform :ios do
             provisioningProfiles: { 
               bundle_identifier => "dis_start2"
             }  
-            generateAppStoreInformation: true            
           },
           scheme: "github-actions-demo-ios",
           clean: true,
