@@ -65,8 +65,8 @@ platform :ios do
           target_filter: ".*github-actions-demo-ios.*", # matches name or type of a target
           profile: "fastlane/dis_start.mobileprovision", # optional if you use sigh
           build_configuration: "Release",
-          certificate: "fastlane/Certificates11.p12",
-          code_signing_identity: "iPhone Distribution" # optionally specify the codesigning identity
+          # certificate: "fastlane/Certificates11.p12",
+          # code_signing_identity: "iPhone Distribution" # optionally specify the codesigning identity
       )
 
       update_code_signing_settings(team_id: teamid, profile_name: "dis_start", bundle_identifier: bundle_identifier, code_sign_identity: "iPhone Distribution")
