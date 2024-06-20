@@ -582,7 +582,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.start.vpn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuteng.hello;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a45199d7-0062-41e0-8b23-4b5b258a7cbe";
 				PROVISIONING_PROFILE_SPECIFIER = dis_start2;
