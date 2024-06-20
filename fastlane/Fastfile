@@ -29,9 +29,9 @@ platform :ios do
   #     in_house: false # optional but may be required if using match/sigh
   # )
   api_key = app_store_connect_api_key(
-    key_id: "98G5T6SV89",
+    key_id: "6JTQGGK7TD",
     issuer_id: "33972105-27b2-4c07-b56d-e7249e87ae24",
-    key_filepath: "fastlane/hehe/AuthKey_98G5T6SV89.p8", # 上面下载的p8文件路径
+    key_filepath: "fastlane/hehe/AuthKey_6JTQGGK7TD.p8", # 上面下载的p8文件路径
     duration: 1200, # optional (maximum 1200)
     in_house: false # optional but may be required if using match/sigh
 )
