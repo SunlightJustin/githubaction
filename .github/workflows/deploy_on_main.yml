@@ -28,10 +28,12 @@ jobs:
     - name: Install Apple certificates
       uses: apple-actions/import-codesign-certs@v1
       with:
-        p12-filepath: fastlane/huasong/Certificates11.p12
-        # p12-file-base64: ${{ secrets.CERTIFICATE_P12 }}
-        # p12-password: ${{ secrets.CERTIFICATE_PASSWORD }}
-        p12-password: 2222
+        # p12-filepath: fastlane/huasong/Certificates11.p12
+        # # p12-file-base64: ${{ secrets.CERTIFICATE_P12 }}
+        # # p12-password: ${{ secrets.CERTIFICATE_PASSWORD }}
+        # p12-password: 2222
+        p12-filepath: fastlane/hehe/certification.p12
+        p12-password: 123456
 
     - name: upload testflight
       # env:
