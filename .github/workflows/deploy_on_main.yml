@@ -24,7 +24,9 @@ jobs:
         gem install fastlane -NV
 
     - name: Install Dependencies
-      run: pod install
+      run: |
+        pod --version
+        pod install
 
     - name: Install Apple certificates
       uses: apple-actions/import-codesign-certs@v1
