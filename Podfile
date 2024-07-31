@@ -8,6 +8,28 @@ target 'github-actions-demo-ios' do
   # Pods for github-actions-demo-ios
   pod 'SnapKit'
   pod 'Then' 
+  pod 'Kingfisher'
+  pod 'SnapKit'
+  pod 'HandyJSON'
+  pod 'Moya'
+  pod 'KeychainAccess', '~> 3.2.0'
+  pod 'SwifterSwift', '~>5.2.0'
+  pod 'Result', '~> 5.0.0'
+  pod 'AFDateHelper'
+  pod 'DeviceKit'
+  pod 'SwiftyJSON'
+  pod 'Closures'
+  pod 'ProgressWebViewController', '~> 1.11.0'
+  pod 'SwiftyStoreKit', '~> 0.16.1'
+  pod 'TYCyclePagerView'
+#  pod 'PKHUD'
+  pod 'ActiveLabel'
+  pod 'KMNavigationBarTransition'
+  pod 'ReachabilitySwift', '~> 5.0.0'
+  pod 'Flurry-iOS-SDK/FlurrySDK'
+  pod 'HDPingTools', '~> 1.2.12'
+  pod 'Google-Mobile-Ads-SDK', '~> 9.11.0.1'
+  
 
   # target 'github-actions-demo-iosTests' do
   #   inherit! :search_paths
