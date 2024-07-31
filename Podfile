@@ -12,23 +12,23 @@ target 'github-actions-demo-ios' do
   pod 'SnapKit'
   pod 'HandyJSON'
   pod 'Moya'
-  pod 'KeychainAccess', '~> 3.2.0'
+#  pod 'KeychainAccess', '~> 3.2.0'
   pod 'SwifterSwift', '~>5.2.0'
-  pod 'Result', '~> 5.0.0'
+#  pod 'Result', '~> 5.0.0'
   pod 'AFDateHelper'
   pod 'DeviceKit'
   pod 'SwiftyJSON'
   pod 'Closures'
-  pod 'ProgressWebViewController', '~> 1.11.0'
-  pod 'SwiftyStoreKit', '~> 0.16.1'
+#  pod 'ProgressWebViewController', '~> 1.11.0'
+#  pod 'SwiftyStoreKit', '~> 0.16.1'
 #  pod 'TYCyclePagerView'
 #  pod 'PKHUD'
   pod 'ActiveLabel'
   pod 'KMNavigationBarTransition'
-  pod 'ReachabilitySwift', '~> 5.0.0'
-  pod 'Flurry-iOS-SDK/FlurrySDK'
-  pod 'HDPingTools', '~> 1.2.12'
-  pod 'Google-Mobile-Ads-SDK', '~> 9.11.0.1'
+#  pod 'ReachabilitySwift', '~> 5.0.0'
+#  pod 'Flurry-iOS-SDK/FlurrySDK'
+#  pod 'HDPingTools', '~> 1.2.12'
+#  pod 'Google-Mobile-Ads-SDK', '~> 9.11.0.1'
   
 
   # target 'github-actions-demo-iosTests' do
@@ -40,15 +40,15 @@ target 'github-actions-demo-ios' do
   #   # Pods for testing
   # end
   
-#  post_install do |installer|
-#    installer.generated_projects.each do |project|
-#        project.targets.each do |target|
-#            target.build_configurations.each do |config|
-#                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
-#            end
-#        end
-#    end
-#  end
+  post_install do |installer|
+    installer.generated_projects.each do |project|
+        project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.5'
+            end
+        end
+    end
+  end
 
 
 end
