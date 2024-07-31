@@ -6,11 +6,16 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.snp.makeConstraints { make in
+            
+        }
         
         // Test Changed
     }
