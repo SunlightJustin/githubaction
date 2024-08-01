@@ -76,6 +76,7 @@ platform :ios do
       file_content = File.read(file_path)
 
       # 输出文件内容
+      xcode_select "/Applications/Xcode_15.0.app"
       puts "Content of #{file_path}: #{file_content}"
       sh "security find-identity -v -p codesigning"
 
