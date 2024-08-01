@@ -1,15 +1,11 @@
 # Uncomment the next line to define a global platform for your project
-# source 'https://github.com/CocoaPods/Specs.git'
-
 platform :ios, '15.0'
 
-target 'MarsVPN' do
+target 'github-actions-demo-ios' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for MarsVPN
-#  pod 'FirebaseAnalytics', '~> 10.0.0'
-  # pod 'FirebaseFirestore', '~> 10.0.0'
+  # Pods for github-actions-demo-ios
   pod 'Kingfisher'
   pod 'SnapKit'
   pod 'HandyJSON'
@@ -31,24 +27,36 @@ target 'MarsVPN' do
   pod 'Flurry-iOS-SDK/FlurrySDK'
   pod 'HDPingTools', '~> 1.2.12'
   pod 'Google-Mobile-Ads-SDK', '~> 9.11.0.1'
+
+  # target 'github-actions-demo-iosTests' do
+  #   inherit! :search_paths
+  #   # Pods for testing
+  # end
+
+  # target 'github-actions-demo-iosUITests' do
+  #   # Pods for testing
+  # end
   
   post_install do |installer|
     installer.generated_projects.each do |project|
         project.targets.each do |target|
             target.build_configurations.each do |config|
                 config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+                config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
             end
         end
     end
   end
+#  
+#  post_install do |installer|
+#      installer.pods_project.targets.each do |target|
+#          target.build_configurations.each do |config|
+#              config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+##              config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+#          end
+#      end
+#  end
+
 
 
 end
-
-#target 'NetworkExtension' do
-#  # Comment the next line if you don't want to use dynamic frameworks
-#  use_frameworks!
-#
-#  # Pods for NetworkExtension
-#
-#end
